@@ -17,6 +17,7 @@
         <java.version>17</java.version>
     </properties>
 
+    
     <distributionManagement>
         <repository>
             <id>deploymentRepo</id>
