@@ -8,6 +8,8 @@ import tn.esprit.tpfoyer.entity.Chambre;
 import tn.esprit.tpfoyer.entity.TypeChambre;
 import tn.esprit.tpfoyer.repository.ChambreRepository;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -45,34 +47,10 @@ public class ChambreServiceImpl implements IChambreService {
     }
 
 
-
-
-
-
-
     public List<Chambre> recupererChambresSelonTyp(TypeChambre tc)
     {
         return chambreRepository.findAllByTypeC(tc);
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -81,4 +59,23 @@ public class ChambreServiceImpl implements IChambreService {
 
         return chambreRepository.trouverChselonEt(cin);
     }
+
+    public boolean checkIfChambreHasNoValidReservationForYear(Long chambreId, Integer anneeUniversitaire) {
+        // Récupération de la chambre à partir de son ID
+        Chambre chambre = retrieveChambre(chambreId);
+
+        // Vérification si la chambre a des réservations valides pour l'année universitaire donnée
+        return chambre.getReservations().stream()
+                .noneMatch(reservation -> {
+                    // Extraction de l'année de la date de réservation en utilisant Calendar
+                    Calendar calendar = Calendar.getInstance();
+                    calendar.setTime(reservation.getAnneeUniversitaire());
+                    int anneeReservation = calendar.get(Calendar.YEAR); // Obtient l'année
+
+                    // Comparaison de l'année de réservation avec l'année universitaire donnée
+                    return anneeReservation == anneeUniversitaire && reservation.isEstValide();
+                });
+    }
+
+
 }

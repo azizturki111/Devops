@@ -1,10 +1,13 @@
 package tn.esprit.tpfoyer.control;
 
 import lombok.AllArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.tpfoyer.entity.Chambre;
 import tn.esprit.tpfoyer.entity.TypeChambre;
 import tn.esprit.tpfoyer.service.IChambreService;
+
+import java.util.Date;
 import java.util.List;
 
 /////////////////////////////
@@ -62,27 +65,17 @@ public class ChambreRestController {
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     // http://localhost:8089/tpfoyer/chambre/retrieve-chambre/8
     @GetMapping("/trouver-chambre-selon-etudiant/{cin}")
     public Chambre trouverChSelonEt(@PathVariable("cin") long cin) {
         Chambre chambre = chambreService.trouverchambreSelonEtudiant(cin);
         return chambre;
     }
-
+    @GetMapping("/chambre/{chambreId}/reservation/available")
+    public boolean checkChambreAvailability(@PathVariable Long chambreId,
+                                            @RequestParam Integer anneeUniversitaire) {
+        // Appel du service pour vérifier la disponibilité de la chambre
+        return chambreService.checkIfChambreHasNoValidReservationForYear(chambreId, anneeUniversitaire);
+    }
 
 }

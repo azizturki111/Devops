@@ -20,8 +20,7 @@ public class BlocServiceImpl  implements IBlocService {
 
     BlocRepository blocRepository;
 
-    @Scheduled(fixedRate = 30000) // millisecondes // cron fixedRate
-    //@Scheduled(cron="0/15 * * * * *")
+
     public List<Bloc> retrieveAllBlocs() {
 
         List<Bloc> listB = blocRepository.findAll();

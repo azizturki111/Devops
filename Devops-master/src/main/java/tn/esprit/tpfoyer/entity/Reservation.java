@@ -19,19 +19,8 @@ public class Reservation {
 
     @Id
     String idReservation;
-
-
-    Date anneeUniversitaire;
+   Date anneeUniversitaire;
     boolean estValide;
-
-
-
-
-
-
-
-
-
 
 
     @ManyToMany
