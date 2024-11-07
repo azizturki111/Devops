@@ -10,7 +10,7 @@ import tn.esprit.tpfoyer.entity.Bloc;
 import tn.esprit.tpfoyer.repository.BlocRepository;
 
 import java.util.List;
-
+////////
 @Service
 @AllArgsConstructor
 @Slf4j  // Simple Loggining Façade For Java
