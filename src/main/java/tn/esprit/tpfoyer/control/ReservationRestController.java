@@ -28,11 +28,6 @@ public class ReservationRestController {
     }
 
 
-
-
-
-
-
     @GetMapping("/retrieve-reservation-date-status/{d}/{v}")
     public List<Reservation> retrieveReservationParDateEtStatus
             (@PathVariable("d") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date d, @PathVariable("v") boolean b) {
