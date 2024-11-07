@@ -66,9 +66,14 @@ public class ChambreServiceImpl implements IChambreService {
 
     public List<Chambre> getChambresInBlocByName(String nomBloc) {
 
-        Bloc bloc = blocRepository.findByNomBloc(nomBloc)
-                .orElseThrow(() -> new RuntimeException("Bloc avec le nom " + nomBloc + " non trouvé"));
+        Bloc bloc = blocRepository.findByNomBloc(nomBloc).orElse(null);
 
+
+        if (bloc == null) {
+            System.out.println("Bloc avec le nom " + nomBloc + " non trouvé");
+
+            return new ArrayList<>();
+        }
 
         return new ArrayList<>(bloc.getChambres());
     }
