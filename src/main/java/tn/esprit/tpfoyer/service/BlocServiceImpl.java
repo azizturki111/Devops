@@ -23,17 +23,9 @@ public class BlocServiceImpl  implements IBlocService {
     @Scheduled(fixedRate = 30000) // millisecondes // cron fixedRate
     //@Scheduled(cron="0/15 * * * * *")
     public List<Bloc> retrieveAllBlocs() {
-
-        List<Bloc> listB = blocRepository.findAll();
-        log.info("taille totale : " + listB.size());
-        for (Bloc b: listB) {
-            log.info("Bloc : " + b);
-        }
-
-        return listB;
+        return null;
     }
 
-    // Exemple sans Keywords :
     @Transactional
     public List<Bloc> retrieveBlocsSelonCapacite(long c) {
 
