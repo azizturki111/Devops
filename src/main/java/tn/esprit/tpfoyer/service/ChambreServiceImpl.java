@@ -2,6 +2,7 @@ package tn.esprit.tpfoyer.service;
 
 
 import lombok.AllArgsConstructor;
+import lombok.Generated;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import tn.esprit.tpfoyer.entity.Chambre;
@@ -18,11 +19,8 @@ public class ChambreServiceImpl implements IChambreService {
     ChambreRepository chambreRepository;
 
     public List<Chambre> retrieveAllChambres() {
-        log.info("In Methodo retrieveAllChambres : ");
-        List<Chambre> listC = chambreRepository.findAll();
-        log.info("Out of retrieveAllChambres : ");
 
-        return listC;
+        return chambreRepository.findAll();
     }
 
     public Chambre retrieveChambre(Long chambreId) {
