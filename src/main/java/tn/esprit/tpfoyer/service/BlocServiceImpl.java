@@ -23,22 +23,9 @@ public class BlocServiceImpl  implements IBlocService {
     @Scheduled(fixedRate = 30000) // millisecondes // cron fixedRate
     //@Scheduled(cron="0/15 * * * * *")
     public List<Bloc> retrieveAllBlocs() {
-        return null;
+        return blocRepository.findAll();
     }
 
-    @Transactional
-    public List<Bloc> retrieveBlocsSelonCapacite(long c) {
-
-        List<Bloc> listB = blocRepository.findAll();
-        List<Bloc> listBselonC = new ArrayList<>();
-
-        for (Bloc b: listB) {
-            if (b.getCapaciteBloc()>=c)
-                listBselonC.add(b);
-        }
-
-        return listBselonC;
-    }
 
     @Transactional
     public Bloc retrieveBloc(Long blocId) {
