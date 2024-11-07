@@ -18,5 +18,5 @@ public interface IChambreService {
     public Chambre trouverchambreSelonEtudiant(long Cin);
 
     public List<Chambre> recupererChambresSelonTyp(TypeChambre tc);
-    public boolean checkIfChambreHasNoValidReservationForYear(Long chambreId, Integer anneeUniversitaire);
+    public List<Chambre> getChambresInBlocByName(String nomBloc);
 }

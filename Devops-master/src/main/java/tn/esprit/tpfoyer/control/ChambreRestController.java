@@ -71,11 +71,9 @@ public class ChambreRestController {
         Chambre chambre = chambreService.trouverchambreSelonEtudiant(cin);
         return chambre;
     }
-    @GetMapping("/chambre/{chambreId}/reservation/available")
-    public boolean checkChambreAvailability(@PathVariable Long chambreId,
-                                            @RequestParam Integer anneeUniversitaire) {
-        // Appel du service pour vérifier la disponibilité de la chambre
-        return chambreService.checkIfChambreHasNoValidReservationForYear(chambreId, anneeUniversitaire);
-    }
 
+    @GetMapping("/bloc/{nomBloc}")
+    public List<Chambre> getChambresInBlocByName(@PathVariable String nomBloc) {
+        return chambreService.getChambresInBlocByName(nomBloc);
+    }
 }

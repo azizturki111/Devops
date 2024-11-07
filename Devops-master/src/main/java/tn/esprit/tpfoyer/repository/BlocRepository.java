@@ -6,56 +6,15 @@ import org.springframework.stereotype.Repository;
 import tn.esprit.tpfoyer.entity.Bloc;
 
 import java.util.List;
-
-
-
-
-
-
-
-
-
-
-
-
+import java.util.Optional;
 
 
 @Repository
  public interface BlocRepository extends JpaRepository<Bloc, Long> {
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   // Récupérer les Blocs qui ont une capacité supérieure à 50 :
 
    List<Bloc> findAllByCapaciteBlocGreaterThan(long c);
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -74,7 +33,7 @@ import java.util.List;
 
 
     // Récupérer le bloc qui a un nom donné :
-    Bloc findByNomBloc (String nom);
+    Optional<Bloc> findByNomBloc (String nom);
 
 
 

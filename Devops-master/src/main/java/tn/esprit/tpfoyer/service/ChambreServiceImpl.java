@@ -4,10 +4,13 @@ package tn.esprit.tpfoyer.service;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import tn.esprit.tpfoyer.entity.Bloc;
 import tn.esprit.tpfoyer.entity.Chambre;
 import tn.esprit.tpfoyer.entity.TypeChambre;
+import tn.esprit.tpfoyer.repository.BlocRepository;
 import tn.esprit.tpfoyer.repository.ChambreRepository;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -18,6 +21,7 @@ import java.util.List;
 public class ChambreServiceImpl implements IChambreService {
 
     ChambreRepository chambreRepository;
+    BlocRepository blocRepository;
 
     public List<Chambre> retrieveAllChambres() {
         log.info("In Methodo retrieveAllChambres : ");
@@ -60,21 +64,13 @@ public class ChambreServiceImpl implements IChambreService {
         return chambreRepository.trouverChselonEt(cin);
     }
 
-    public boolean checkIfChambreHasNoValidReservationForYear(Long chambreId, Integer anneeUniversitaire) {
-        // Récupération de la chambre à partir de son ID
-        Chambre chambre = retrieveChambre(chambreId);
+    public List<Chambre> getChambresInBlocByName(String nomBloc) {
 
-        // Vérification si la chambre a des réservations valides pour l'année universitaire donnée
-        return chambre.getReservations().stream()
-                .noneMatch(reservation -> {
-                    // Extraction de l'année de la date de réservation en utilisant Calendar
-                    Calendar calendar = Calendar.getInstance();
-                    calendar.setTime(reservation.getAnneeUniversitaire());
-                    int anneeReservation = calendar.get(Calendar.YEAR); // Obtient l'année
+        Bloc bloc = blocRepository.findByNomBloc(nomBloc)
+                .orElseThrow(() -> new RuntimeException("Bloc avec le nom " + nomBloc + " non trouvé"));
 
-                    // Comparaison de l'année de réservation avec l'année universitaire donnée
-                    return anneeReservation == anneeUniversitaire && reservation.isEstValide();
-                });
+
+        return new ArrayList<>(bloc.getChambres());
     }
 
 
