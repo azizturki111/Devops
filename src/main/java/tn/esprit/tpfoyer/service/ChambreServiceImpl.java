@@ -26,7 +26,7 @@ public class ChambreServiceImpl implements IChambreService {
     }
 
     public Chambre retrieveChambre(Long chambreId) {
-        return chambreRepository.findById(chambreId).get();
+        return chambreRepository.findById(chambreId).orElse(null);
     }
 
     public Chambre addChambre(Chambre c) {
