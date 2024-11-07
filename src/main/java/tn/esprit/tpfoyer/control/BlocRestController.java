@@ -37,7 +37,7 @@ public class BlocRestController {
     public Bloc addBloc(@RequestBody Bloc c) {
         return blocService.addBloc(c);
     }
-
+/////////
     @DeleteMapping("/remove-bloc/{bloc-id}")
     public void removeBloc(@PathVariable("bloc-id") Long chId) {
         blocService.removeBloc(chId);
